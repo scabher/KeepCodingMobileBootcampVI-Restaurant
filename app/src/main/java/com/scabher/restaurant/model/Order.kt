@@ -1,4 +1,4 @@
 package com.scabher.restaurant.model
 
-data class Order(private val plateId: Int, private val notes: String){
+data class Order(val plate: Plate, val notes: String){
 }

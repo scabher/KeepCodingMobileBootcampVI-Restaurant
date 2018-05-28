@@ -13,7 +13,7 @@ object Allergens {
     )
 
     fun getByPos(position: Int): Allergen? {
-        if (position < 0 || position >= allergens.size)
+        if (position !in  0..(allergens.size-1))
             return null
 
         return allergens[position]

@@ -13,9 +13,9 @@ import kotlinx.android.synthetic.main.activity_table_detail.*
  * An activity representing a single table detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a [tableListActivity].
+ * in a [TableListActivity].
  */
-class tableDetailActivity : AppCompatActivity() {
+class TableDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +44,8 @@ class tableDetailActivity : AppCompatActivity() {
             // using a fragment transaction.
             val fragment = tableDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(tableDetailFragment.ARG_ITEM_ID,
-                            intent.getStringExtra(tableDetailFragment.ARG_ITEM_ID))
+                    putString(tableDetailFragment.ARG_TABLE_ID,
+                            intent.getStringExtra(tableDetailFragment.ARG_TABLE_ID))
                 }
             }
 
@@ -64,7 +64,7 @@ class tableDetailActivity : AppCompatActivity() {
                     //
                     // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-                    navigateUpTo(Intent(this, tableListActivity::class.java))
+                    navigateUpTo(Intent(this, TableListActivity::class.java))
                     true
                 }
                 else -> super.onOptionsItemSelected(item)

@@ -1,6 +1,6 @@
 package com.scabher.restaurant.model
 
-data class Plate(private val id: Int, private var name: String, private var description: String,
-                 private val image: Int, private var price: Float, private var allergens: List<Allergen>?) {
+data class Plate(val id: Int, val name: String, val description: String,
+                 val image: Int, val price: Float, val allergens: List<Allergen>?) {
 
 }

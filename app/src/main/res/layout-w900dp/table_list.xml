@@ -10,7 +10,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".activity.tableListActivity">
+    tools:context=".activity.TableListActivity">
 
     <!--
     This layout is a two-pane layout for the tables
@@ -27,7 +27,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context="com.scabher.restaurant.activity.tableListActivity"
+        tools:context="com.scabher.restaurant.activity.TableListActivity"
         tools:listitem="@layout/table_list_content" />
 
     <FrameLayout

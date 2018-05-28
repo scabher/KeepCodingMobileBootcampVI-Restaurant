@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.tableListActivity"
+            android:name=".activity.TableListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.tableDetailActivity"
+            android:name=".activity.TableDetailActivity"
             android:label="@string/title_table_detail"
-            android:parentActivityName=".activity.tableListActivity"
+            android:parentActivityName=".activity.TableListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.scabher.restaurant.activity.tableListActivity" />
+                android:value="com.scabher.restaurant.activity.TableListActivity" />
         </activity>
     </application>
 

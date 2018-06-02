@@ -1,72 +1,63 @@
 package com.scabher.restaurant.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.scabher.restaurant.R
-import com.scabher.restaurant.fragment.tableDetailFragment
-import kotlinx.android.synthetic.main.activity_table_detail.*
+import com.scabher.restaurant.fragment.TableDetailFragment
 
-/**
- * An activity representing a single table detail screen. This
- * activity is only used on narrow width devices. On tablet-size devices,
- * item details are presented side-by-side with a list of items
- * in a [TableListActivity].
- */
 class TableDetailActivity : AppCompatActivity() {
+
+    companion object {
+
+        val EXTRA_TABLE_INDEX = "EXTRA_TABLE_INDEX"
+
+        fun intent(context: Context, tableIndex: Int): Intent {
+            val intent = Intent(context, TableDetailActivity::class.java)
+            intent.putExtra(EXTRA_TABLE_INDEX, tableIndex)
+
+            return intent
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table_detail)
-        setSupportActionBar(detail_toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
 
         // Show the Up button in the action bar.
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // savedInstanceState is non-null when there is fragment state
-        // saved from previous configurations of this activity
-        // (e.g. when rotating the screen from portrait to landscape).
-        // In this case, the fragment will automatically be re-added
-        // to its container so we don't need to manually add it.
-        // For more information, see the Fragments API guide at:
-        //
-        // http://developer.android.com/guide/components/fragments.html
-        //
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            val fragment = tableDetailFragment().apply {
+            val fragment = TableDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(tableDetailFragment.ARG_TABLE_ID,
-                            intent.getStringExtra(tableDetailFragment.ARG_TABLE_ID))
+                    putString(TableDetailFragment.ARG_TABLE_ID,
+                            intent.getStringExtra(TableDetailFragment.ARG_TABLE_ID))
                 }
             }
 
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.table_detail_container, fragment)
-                    .commit()
+//            supportFragmentManager.beginTransaction()
+//                    .add(R.id.table_detail_container, fragment)
+//                    .commit()
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =
-            when (item.itemId) {
-                android.R.id.home -> {
-                    // This ID represents the Home or Up button. In the case of this
-                    // activity, the Up button is shown. For
-                    // more details, see the Navigation pattern on Android Design:
-                    //
-                    // http://developer.android.com/design/patterns/navigation.html#up-vs-back
+        when (item.itemId) {
+            android.R.id.home -> {
+                // This ID represents the Home or Up button. In the case of this
+                // activity, the Up button is shown. For
+                // more details, see the Navigation pattern on Android Design:
+                //
+                // http://developer.android.com/design/patterns/navigation.html#up-vs-back
 
-                    navigateUpTo(Intent(this, TableListActivity::class.java))
-                    true
-                }
-                else -> super.onOptionsItemSelected(item)
+                navigateUpTo(Intent(this, RestaurantActivity::class.java))
+                true
             }
+            else -> super.onOptionsItemSelected(item)
+        }
+
 }

@@ -5,11 +5,11 @@ import com.scabher.restaurant.R
 object Allergens {
 
     private val allergens: List<Allergen> = listOf(
-        Allergen(1, "Huevo", R.drawable.egg_allergen),
-        Allergen(2, "Gluten", R.drawable.gluten_allergen),
-        Allergen(3, "Crustáceos", R.drawable.crustaceans_allergen),
-        Allergen(4, "Leche", R.drawable.milk_allergen),
-        Allergen(5, "Pescado", R.drawable.fish_allergen)
+        Allergen(0, "Huevo", R.drawable.egg_allergen),
+        Allergen(1, "Gluten", R.drawable.gluten_allergen),
+        Allergen(2, "Crustáceos", R.drawable.crustaceans_allergen),
+        Allergen(3, "Leche", R.drawable.milk_allergen),
+        Allergen(4, "Pescado", R.drawable.fish_allergen)
     )
 
     fun getByPos(position: Int): Allergen? {
@@ -17,5 +17,9 @@ object Allergens {
             return null
 
         return allergens[position]
+    }
+
+    fun getById(id: Int): Allergen? {
+        return allergens.find { allergen: Allergen -> allergen.id == id }
     }
 }

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.TableListActivity"
+            android:name=".activity.RestaurantActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,11 +22,29 @@
         <activity
             android:name=".activity.TableDetailActivity"
             android:label="@string/title_table_detail"
-            android:parentActivityName=".activity.TableListActivity"
+            android:parentActivityName=".activity.RestaurantActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.scabher.restaurant.activity.TableListActivity" />
+                android:value="com.scabher.restaurant.activity.RestaurantActivity" />
+        </activity>
+        <activity android:name=".activity.PlateActivity" />
+        <activity
+            android:name=".activity.MenuActivity"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ItemListActivity"
+            android:label="@string/title_item_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".activity.ItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.scabher.restaurant.activity.ItemListActivity" />
         </activity>
     </application>
 

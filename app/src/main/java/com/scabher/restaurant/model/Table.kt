@@ -1,6 +1,8 @@
 package com.scabher.restaurant.model
 
-data class Table(val id: Int, private var orders: List<Order>, val name: String, val description: String) {
+import java.io.Serializable
+
+data class Table(val id: Int, private var orders: List<Order>, val name: String, val description: String): Serializable {
     private var total: Float = 0.0f
 
     fun getTotal() : Float {
@@ -17,8 +19,8 @@ data class Table(val id: Int, private var orders: List<Order>, val name: String,
         total += order.plate.price
     }
 
-    fun getOrders(): List<Order> {
-        return orders
+    fun getOrdersArray(): Array<Order> {
+        return orders.toTypedArray()
     }
 
     fun emptyOrders() {

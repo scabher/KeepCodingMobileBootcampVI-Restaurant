@@ -3,6 +3,7 @@ package com.scabher.restaurant.model
 object Tables {
 
     private val tables: List<Table> = listOf(
+        Table(0, emptyList(), "Mesa 0", "Mesa pegada al lado de caja"),
         Table(1, emptyList(), "Mesa 1", "Mesa pegada a la entrada"),
         Table(2, emptyList(), "Mesa 2", "1ª mesa en la fila de la izquierda"),
         Table(3, emptyList(), "Mesa 3", "2ª mesa en la fila de la izquierda"),
@@ -39,4 +40,8 @@ object Tables {
 
         table.removeOrder(order)
     }
+
+    fun get(index: Int) = tables[index]
+
+    fun getIndex(table: Table) = tables.indexOf(table)
 }

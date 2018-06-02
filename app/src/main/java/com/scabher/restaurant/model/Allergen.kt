@@ -1,4 +1,4 @@
 package com.scabher.restaurant.model
 
-class Allergen(private val id: Int, private val name: String, private val icon: Int) {
+class Allergen(val id: Int, val name: String, val icon: Int) {
 }

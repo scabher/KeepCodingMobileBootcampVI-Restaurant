@@ -43,7 +43,7 @@ class TableDetailFragment : Fragment() {
         arguments?.let {
             if (it.containsKey(ARG_TABLE_ID) && it.getInt(ARG_TABLE_ID) != null) {
                 val table = Tables.getTableById(it.getInt(ARG_TABLE_ID))
-                val order = Order(Plate(1, "dummy plate", "",R.drawable.merluza_romana,7.5f, emptyList()), "Notes...")
+                val order = Order(Menu.getPlate(1)!!, "Notes...")
                 table?.addOrder(order)
                 activity?.toolbar?.title = table?.name
             }

@@ -33,7 +33,7 @@ class PlateActivity : AppCompatActivity() {
         val plate = Menu.getPlate(plateId)
 
         // Se actualiza la interfaz
-        plate?.let {
+        if (plate != null) {
             plate_name.text = plate.name
             plate_description.text = plate.description
             plate_price.text = plate.price.toString()
@@ -41,11 +41,11 @@ class PlateActivity : AppCompatActivity() {
             plate_notes.text = intent.getStringExtra(EXTRA_PLATE_NOTES)
 
             plate.allergens?.let {
-                egg_allergen_image.visibility = if (plate.allergens.contains(Allergens.getById(1))) View.VISIBLE else View.GONE
-                gluten_allergen_image.visibility = if (plate.allergens.contains(Allergens.getById(2))) View.VISIBLE else View.GONE
-                crustaceans_allergen_image.visibility = if (plate.allergens.contains(Allergens.getById(3))) View.VISIBLE else View.GONE
-                milk_allergen_image.visibility = if (plate.allergens.contains(Allergens.getById(4))) View.VISIBLE else View.GONE
-                fish_allergen_image.visibility = if (plate.allergens.contains(Allergens.getById(5))) View.VISIBLE else View.GONE
+                egg_allergen_image.visibility = if (it.contains(Allergens.getById(0))) View.VISIBLE else View.GONE
+                gluten_allergen_image.visibility = if (it.contains(Allergens.getById(1))) View.VISIBLE else View.GONE
+                crustaceans_allergen_image.visibility = if (it.contains(Allergens.getById(2))) View.VISIBLE else View.GONE
+                milk_allergen_image.visibility = if (it.contains(Allergens.getById(3))) View.VISIBLE else View.GONE
+                fish_allergen_image.visibility = if (it.contains(Allergens.getById(4))) View.VISIBLE else View.GONE
             }
         }
     }

@@ -51,8 +51,6 @@ class TableListFragment: Fragment() {
 
         // Datos para rellenar el RecyclerView, tarea del setter de tables
         tables = Tables.getTables()
-
-        updateToolbarInfo(Tables.get(0))
     }
 
     fun setRecyclerViewClickListener() {
@@ -62,7 +60,6 @@ class TableListFragment: Fragment() {
         adapter?.onClickListener = View.OnClickListener { view ->
             val table = view.tag as Table
             onTableSelectedListener?.onTableSelected(table, Tables.getIndex(table))
-            updateToolbarInfo(table)
         }
     }
 
@@ -89,12 +86,4 @@ class TableListFragment: Fragment() {
             onTableSelectedListener = null
         }
     }
-
-    private fun updateToolbarInfo(table: Table) {
-        if (activity is AppCompatActivity) {
-            val supportActionBar = (activity as? AppCompatActivity)?.supportActionBar
-            supportActionBar?.title = "Restaurant - ${table.name}"
-        }
-    }
-
 }

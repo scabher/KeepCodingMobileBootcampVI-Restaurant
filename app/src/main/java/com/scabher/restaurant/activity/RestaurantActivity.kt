@@ -53,6 +53,8 @@ class RestaurantActivity : AppCompatActivity(), OnTableSelectedListener {
         val tableDetailFragment = supportFragmentManager.findFragmentById(R.id.table_detail_fragment) as? TableDetailFragment
 
         if (tableDetailFragment != null) {
+            supportActionBar?.title = "Restaurant - ${table.name}"
+
             // Está en una interfaz donde existe el TableDetailFragment, se carga el pedido de esa mesa
             tableDetailFragment.updateTableInfo(position)
         }

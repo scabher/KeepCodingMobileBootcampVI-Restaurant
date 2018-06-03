@@ -38,12 +38,10 @@ class TableListFragment: Fragment() {
             }
         }
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_table_list, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,6 +51,8 @@ class TableListFragment: Fragment() {
 
         // Datos para rellenar el RecyclerView, tarea del setter de tables
         tables = Tables.getTables()
+
+        updateToolbarInfo(Tables.get(0))
     }
 
     fun setRecyclerViewClickListener() {
@@ -62,13 +62,7 @@ class TableListFragment: Fragment() {
         adapter?.onClickListener = View.OnClickListener { view ->
             val table = view.tag as Table
             onTableSelectedListener?.onTableSelected(table, Tables.getIndex(table))
-        }
-    }
-
-    private fun updateTableInfo(position: Int) {
-        if (activity is AppCompatActivity) {
-            val supportActionBar = (activity as? AppCompatActivity)?.supportActionBar
-            supportActionBar?.title = Tables.get(position).name
+            updateToolbarInfo(table)
         }
     }
 
@@ -95,4 +89,12 @@ class TableListFragment: Fragment() {
             onTableSelectedListener = null
         }
     }
+
+    private fun updateToolbarInfo(table: Table) {
+        if (activity is AppCompatActivity) {
+            val supportActionBar = (activity as? AppCompatActivity)?.supportActionBar
+            supportActionBar?.title = "Restaurant - ${table.name}"
+        }
+    }
+
 }

@@ -8,7 +8,6 @@ import com.scabher.restaurant.R
 import com.scabher.restaurant.activity.MenuActivity
 import com.scabher.restaurant.activity.PlateActivity
 import com.scabher.restaurant.model.*
-import com.scabher.restaurant.model.Menu
 import kotlinx.android.synthetic.main.fragment_table_detail.*
 
 class TableDetailFragment : Fragment() {
@@ -52,6 +51,10 @@ class TableDetailFragment : Fragment() {
         show_menu_button.setOnClickListener {
             startActivity(MenuActivity.intent(activity!!, tableId))
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         updateTableInfo(tableId)
     }
@@ -74,7 +77,7 @@ class TableDetailFragment : Fragment() {
 
                 return true
             }
-            R.id.action_new_bill -> {
+            R.id.action_new_order -> {
                 table.emptyOrders()
                 updateTableInfo(tableId)
                 return true

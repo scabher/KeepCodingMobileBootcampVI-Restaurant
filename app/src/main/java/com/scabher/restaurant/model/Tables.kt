@@ -44,4 +44,7 @@ object Tables {
     fun get(index: Int) = tables[index]
 
     fun getIndex(table: Table) = tables.indexOf(table)
+
+    val count
+        get() = tables.size
 }

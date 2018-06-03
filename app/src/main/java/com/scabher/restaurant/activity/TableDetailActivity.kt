@@ -37,7 +37,7 @@ class TableDetailActivity : AppCompatActivity() {
             // using a fragment transaction.
             val fragment = TableDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(TableDetailFragment.ARG_TABLE_ID, table.id.toString())
+                    putInt(TableDetailFragment.ARG_TABLE_ID, table.id)
                 }
             }
 

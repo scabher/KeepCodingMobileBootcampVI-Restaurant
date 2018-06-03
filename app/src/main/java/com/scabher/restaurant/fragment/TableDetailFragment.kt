@@ -37,6 +37,8 @@ class TableDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
+        tableId = arguments?.get(ARG_TABLE_ID) as Int
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

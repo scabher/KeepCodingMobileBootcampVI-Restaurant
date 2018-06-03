@@ -31,6 +31,7 @@ class TableDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val table = Tables.get(intent.getIntExtra(EXTRA_TABLE_INDEX, 0))
+        supportActionBar?.title = "Comanda - ${table.name}"
 
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity

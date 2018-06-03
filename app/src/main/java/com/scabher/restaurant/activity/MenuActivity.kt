@@ -32,7 +32,6 @@ class MenuActivity : AppCompatActivity() {
 
         setSupportActionBar(menu_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)  // Muestra el botón de back
-        menu_toolbar.title = "Menú"
 
         menu_list.layoutManager = LinearLayoutManager(this)
 

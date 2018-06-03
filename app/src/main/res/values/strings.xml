@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Restaurant</string>
-    <string name="title_table_detail">table Detail</string>
-    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_table_detail">Comanda</string>
+    <string name="title_activity_menu">Menu</string>
     <string name="action_order_total">Total Factura</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>

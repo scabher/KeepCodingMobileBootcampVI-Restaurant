@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.scabher.restaurant.R
 import com.scabher.restaurant.fragment.TableDetailFragment
+import com.scabher.restaurant.model.Tables
 
 class TableDetailActivity : AppCompatActivity() {
 
@@ -29,13 +30,14 @@ class TableDetailActivity : AppCompatActivity() {
         // Show the Up button in the action bar.
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val table = Tables.get(intent.getIntExtra(EXTRA_TABLE_INDEX, 0))
+
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             val fragment = TableDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(TableDetailFragment.ARG_TABLE_ID,
-                            intent.getStringExtra(TableDetailFragment.ARG_TABLE_ID))
+                    putString(TableDetailFragment.ARG_TABLE_ID, table.id.toString())
                 }
             }
 

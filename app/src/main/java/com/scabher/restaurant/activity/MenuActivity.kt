@@ -1,6 +1,7 @@
 package com.scabher.restaurant.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -14,18 +15,24 @@ import kotlinx.android.synthetic.main.activity_menu.*
 
 class MenuActivity : AppCompatActivity() {
 
-    private var onPlateSelectedListener: OnPlateSelectedListener? = null
+    companion object {
+        val EXTRA_TABLE_ID = "EXTRA_TABLE_ID"
 
-    interface OnPlateSelectedListener {
-        fun onPlateSelected(plate: Plate, position: Int)
+        fun intent(context: Context, tableId: Int): Intent {
+            val intent = Intent(context, MenuActivity::class.java)
+            intent.putExtra(EXTRA_TABLE_ID, tableId)
+
+            return intent
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(menu_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)  // Muestra el botón de back
+        menu_toolbar.title = "Menú"
 
         menu_list.layoutManager = LinearLayoutManager(this)
 
@@ -34,7 +41,9 @@ class MenuActivity : AppCompatActivity() {
 
         adapter?.onClickListener = View.OnClickListener { view ->
             val plate = view.tag as Plate
-            onPlateSelectedListener?.onPlateSelected(plate, Menu.getIndex(plate))
+            val tableId = intent.getIntExtra(EXTRA_TABLE_ID, 0)
+            val intent = PlateActivity.intent(view.context, plate.id, "", tableId)
+            view.context.startActivity(intent)
         }
 
         menu_list.adapter = adapter
@@ -47,5 +56,4 @@ class MenuActivity : AppCompatActivity() {
         }
         else -> super.onOptionsItemSelected(item)
     }
-
 }

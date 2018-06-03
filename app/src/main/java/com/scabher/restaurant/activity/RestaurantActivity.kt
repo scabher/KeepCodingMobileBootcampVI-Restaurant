@@ -17,8 +17,6 @@ class RestaurantActivity : AppCompatActivity(), OnTableSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant)
 
-        setSupportActionBar(toolbar)    // Fija como ActionBar el componente de la vista 'toolbar'
-
         // Se averigua qué interfaz hemos cargado
         // preguntando si en la interfaz tenemos un Framelayout concreto
         if (findViewById<ViewGroup>(R.id.table_list_fragment) != null) {

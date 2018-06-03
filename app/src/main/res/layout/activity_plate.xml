@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="Arroz a la cubana"/>
+        android:text="@string/plate0_name"/>
 
     <TextView
         android:id="@+id/plate_price"
@@ -40,24 +40,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/plate_image"
-        android:layout_toEndOf="@+id/plate_name"
+        android:layout_toRightOf="@+id/plate_image"
+        android:layout_toEndOf="@+id/plate_image"
         android:text="Alérgenos:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
+    <TextView
+        android:id="@+id/plate_no_allergens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/plate_no_allergens"
+        android:layout_below="@+id/allergens_label"
+        android:layout_toEndOf="@+id/plate_image"
+        android:layout_toRightOf="@id/plate_image"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
     <LinearLayout
+        android:id="@+id/plate_allergens"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/allergens_label"
-        android:layout_toEndOf="@+id/plate_name"
+        android:layout_toEndOf="@+id/plate_image"
         android:layout_toRightOf="@id/plate_image"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+
 
         <ImageView
             android:id="@+id/crustaceans_allergen_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/crustaceans_allergen" />
+            app:srcCompat="@drawable/crustaceans_allergen"
+            android:contentDescription="TODO" />
 
         <ImageView
             android:id="@+id/egg_allergen_image"
@@ -78,14 +94,16 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/gluten_allergen" />
+            app:srcCompat="@drawable/gluten_allergen"
+            android:contentDescription="TODO" />
 
         <ImageView
             android:id="@+id/milk_allergen_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/milk_allergen" />
+            app:srcCompat="@drawable/milk_allergen"
+            android:contentDescription="TODO" />
     </LinearLayout>
 
     <LinearLayout
@@ -95,31 +113,64 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/plate_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plate_description_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
             android:id="@+id/plate_description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
             android:layout_weight="1"
-            android:text="Descripción del plato"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="Descripción del plato" />
+
+        <TextView
+            android:id="@+id/plate_notes_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plate_order_notes"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <EditText
             android:id="@+id/plate_notes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/plate_description"
             android:layout_weight="1"
             android:inputType="text"
             android:singleLine="false"
-            android:text="Notas del pedido" />
-    </LinearLayout>
+            tools:text="@string/order_notes" />
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cancel_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@android:string/cancel"/>
+
+            <Button
+                android:id="@+id/save_plate_btn"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Añadir"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -27,7 +27,7 @@ class TableListFragment: Fragment() {
         fun onTableSelected(table: Table, position: Int)
     }
 
-    var tables: List<Table>? = null
+    private var tables: List<Table>? = null
         set(value) {
             field = value
 
@@ -38,12 +38,6 @@ class TableListFragment: Fragment() {
             }
         }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)

@@ -1,22 +1,17 @@
 package com.scabher.restaurant.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ArrayAdapter
 import com.scabher.restaurant.R
 import com.scabher.restaurant.activity.MenuActivity
 import com.scabher.restaurant.activity.PlateActivity
 import com.scabher.restaurant.model.*
-import kotlinx.android.synthetic.main.activity_table_detail.*
+import com.scabher.restaurant.model.Menu
 import kotlinx.android.synthetic.main.fragment_table_detail.*
 
 class TableDetailFragment : Fragment() {
-
     companion object {
         const val ARG_TABLE_ID = "ARG_TABLE_ID"
 
@@ -37,19 +32,12 @@ class TableDetailFragment : Fragment() {
         fun onOrderSelected(order: Order, position: Int)
     }
 
+    val REQUEST_BILL = 1
     private var tableId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            if (it.containsKey(ARG_TABLE_ID) && it.getInt(ARG_TABLE_ID) != null) {
-                val table = Tables.getTableById(it.getInt(ARG_TABLE_ID))
-                val order = Order(Menu.getPlate(1)!!, "Notes...")
-                table?.addOrder(order)
-                activity?.toolbar?.title = table?.name
-            }
-        }
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -61,15 +49,42 @@ class TableDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        add_plate_button.setOnClickListener {
-            startActivity(Intent(activity!!, MenuActivity::class.java))
+        show_menu_button.setOnClickListener {
+            startActivity(MenuActivity.intent(activity!!, tableId))
         }
 
         updateTableInfo(tableId)
     }
 
-    fun updateTableInfo(position: Int) {
-        tableId = position
+    override fun onCreateOptionsMenu(menu: android.view.Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        // Pilla el xml donde se define el menú y lo transforma dentro del objeto menú
+        inflater?.inflate(R.menu.activity_table_detail, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val table = Tables.get(tableId)
+
+        when (item?.itemId) {
+            R.id.action_show_bill -> {
+                val dialog = BillDialog.newInstance(table)
+                dialog.setTargetFragment(this, REQUEST_BILL)
+                dialog.show(fragmentManager, null)
+
+                return true
+            }
+            R.id.action_new_bill -> {
+                table.emptyOrders()
+                updateTableInfo(tableId)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    fun updateTableInfo(newTableId: Int) {
+        tableId = newTableId
         val table = Tables.get(tableId)
 
         val adapter = ArrayAdapter<Order>(
@@ -84,14 +99,7 @@ class TableDetailFragment : Fragment() {
             table?.let {
                 onOrderSelectedListener?.onOrderSelected(it.getOrdersArray()[index], index)
                 val order = it.getOrdersArray()[index]
-                val intent = PlateActivity.intent(activity!!, order.plate.id, order.notes)
-
-                // Opciones especiales para navegar con vistas comunes
-//                val animationOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                        activity!!,
-//                        it,
-//                        getString(R.string.transition_to_detail)
-//                )
+                val intent = PlateActivity.intent(activity!!, order.plate.id, order.notes, table.id)
 
                 startActivity(intent)
             }

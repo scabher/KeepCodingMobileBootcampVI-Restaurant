@@ -19,12 +19,27 @@ data class Table(val id: Int, private var orders: List<Order>, val name: String,
         total += order.plate.price
     }
 
+    fun updateOrder(plateId: Int, notes: String) {
+        var order = orders.find { order -> order.plate.id == plateId }
+
+        order?.let {
+            it.notes = notes
+        }
+    }
+
     fun getOrdersArray(): Array<Order> {
         return orders.toTypedArray()
+    }
+
+    fun hasPlate(plateId: Int): Boolean {
+        return orders.find { order -> order.plate.id == plateId } != null
     }
 
     fun emptyOrders() {
         orders = emptyList<Order>()
         total = 0.0f
     }
+
+    val count
+        get() = orders.size
 }

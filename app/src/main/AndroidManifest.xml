@@ -21,8 +21,7 @@
         <activity
             android:name=".activity.TableDetailActivity"
             android:label="@string/title_table_detail"
-            android:parentActivityName=".activity.RestaurantActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".activity.RestaurantActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.scabher.restaurant.activity.RestaurantActivity" />

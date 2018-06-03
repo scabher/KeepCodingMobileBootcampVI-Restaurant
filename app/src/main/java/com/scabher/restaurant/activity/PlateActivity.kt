@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import com.scabher.restaurant.R
-import com.scabher.restaurant.model.Allergen
 import com.scabher.restaurant.model.Allergens
 import com.scabher.restaurant.model.Menu
 import kotlinx.android.synthetic.main.activity_plate.*
@@ -32,13 +32,16 @@ class PlateActivity : AppCompatActivity() {
         val plateId = intent.getIntExtra(EXTRA_PLATE_ID, 0)
         val plate = Menu.getPlate(plateId)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)  // Muestra el botón de back
+        supportActionBar?.title = plate?.name
+
         // Se actualiza la interfaz
         if (plate != null) {
             plate_name.text = plate.name
             plate_description.text = plate.description
-            plate_price.text = plate.price.toString()
+            plate_price.text = "${plate.price.toString()}€"
             plate_image.setImageResource(plate.image)
-            plate_notes.text = intent.getStringExtra(EXTRA_PLATE_NOTES)
+            plate_notes.setText(intent.getStringExtra(EXTRA_PLATE_NOTES))
 
             plate.allergens?.let {
                 egg_allergen_image.visibility = if (it.contains(Allergens.getById(0))) View.VISIBLE else View.GONE
@@ -48,5 +51,13 @@ class PlateActivity : AppCompatActivity() {
                 fish_allergen_image.visibility = if (it.contains(Allergens.getById(4))) View.VISIBLE else View.GONE
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
+        android.R.id.home -> { // Flecha de back del toolbar
+            finish()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 }

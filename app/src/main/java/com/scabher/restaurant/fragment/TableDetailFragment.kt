@@ -1,5 +1,6 @@
 package com.scabher.restaurant.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.scabher.restaurant.R
+import com.scabher.restaurant.activity.MenuActivity
 import com.scabher.restaurant.activity.PlateActivity
 import com.scabher.restaurant.model.*
 import kotlinx.android.synthetic.main.activity_table_detail.*
@@ -58,6 +60,10 @@ class TableDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        add_plate_button.setOnClickListener {
+            startActivity(Intent(activity!!, MenuActivity::class.java))
+        }
 
         updateTableInfo(tableId)
     }

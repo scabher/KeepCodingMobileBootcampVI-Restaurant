@@ -33,19 +33,6 @@
             android:name=".activity.MenuActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.ItemListActivity"
-            android:label="@string/title_item_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.ItemDetailActivity"
-            android:label="@string/title_item_detail"
-            android:parentActivityName=".activity.ItemListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.scabher.restaurant.activity.ItemListActivity" />
-        </activity>
     </application>
 
 </manifest>

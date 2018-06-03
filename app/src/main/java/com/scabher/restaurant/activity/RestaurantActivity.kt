@@ -8,6 +8,7 @@ import com.scabher.restaurant.fragment.TableDetailFragment
 import com.scabher.restaurant.fragment.TableListFragment
 import com.scabher.restaurant.fragment.TableListFragment.OnTableSelectedListener
 import com.scabher.restaurant.model.Table
+import kotlinx.android.synthetic.main.activity_restaurant.*
 
 
 class RestaurantActivity : AppCompatActivity(), OnTableSelectedListener {
@@ -15,6 +16,8 @@ class RestaurantActivity : AppCompatActivity(), OnTableSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant)
+
+        setSupportActionBar(toolbar)    // Fija como ActionBar el componente de la vista 'toolbar'
 
         // Se averigua qué interfaz hemos cargado
         // preguntando si en la interfaz tenemos un Framelayout concreto

@@ -54,8 +54,8 @@ class TableRecyclerViewAdapter(private val tables: List<Table>) :
     override fun getItemCount() = tables.size
 
     inner class TableViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.id_text
-        val contentView: TextView = view.content
+        private val idView: TextView = view.id_text
+        private val contentView: TextView = view.content
 
         fun bindTable(table: Table) {
             idView.text = table.id.toString()

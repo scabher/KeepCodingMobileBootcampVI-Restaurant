@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.scabher.restaurant.R
 import com.scabher.restaurant.model.*
 import kotlinx.android.synthetic.main.activity_plate.*
@@ -76,6 +78,7 @@ class PlateActivity : AppCompatActivity() {
                         table.addOrder(Order(plate, plate_notes.text.toString()))
                     }
                 }
+                Toast.makeText(this, "La comanda ha sido actualizada", Toast.LENGTH_LONG).show()
                 finish()
             }
         }
